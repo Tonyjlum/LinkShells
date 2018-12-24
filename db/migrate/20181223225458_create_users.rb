@@ -4,8 +4,8 @@ class CreateUsers < ActiveRecord::Migration[5.2]
       t.string :email
       t.string :password
       t.integer :age
-      t.string :alias
-      t.string :profile_img
+      t.string :username
+      t.string :profile_img, :default => "https://image.freepik.com/free-icon/github-character-silhouette_318-40485.jpg"
 
       t.timestamps
     end
