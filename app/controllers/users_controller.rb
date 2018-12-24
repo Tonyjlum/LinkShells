@@ -14,7 +14,7 @@ class UsersController < ApplicationController
   def show
     @user =  User.find(params[:id])
     #event list
-    #game list
+    @game_list = @user.games_by_name
   end
 
   def new

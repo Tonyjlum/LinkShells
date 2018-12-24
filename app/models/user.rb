@@ -7,4 +7,8 @@ class User < ApplicationRecord
   validates :email, :password, length: { minimum: 5 }
   validates :age, numericality: { greater_than_or_equal_to: 18 }
 
+  def games_by_name
+    self.games.sort_by{|g| g.name}
+  end
+
 end

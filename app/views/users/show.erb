@@ -1,2 +1,19 @@
 <h1><%= @user.username %></h1>
 <img src="<%= @user.profile_img %>" alt="<%= @user.username %>" width = "200px">
+
+
+<div class="game-list">
+  <h3>Game List</h3>
+  <ul>
+    <% @game_list.each do |game| %>
+      <li><%= link_to game.name, game %></li>
+    <% end %>
+  </ul>
+</div>
+
+<div class="event-list">
+  <h3>Event List</h3>
+  <ul>
+
+  </ul>
+</div>
