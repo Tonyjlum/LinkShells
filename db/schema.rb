@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_23_225458) do
+ActiveRecord::Schema.define(version: 2018_12_24_023549) do
+
+  create_table "games", force: :cascade do |t|
+    t.string "name"
+    t.string "platform"
+    t.integer "max_players"
+    t.string "description"
+    t.string "logo"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email"
