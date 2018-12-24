@@ -10,6 +10,14 @@
   </head>
 
   <body>
+    <header>
+      <div class="title" align = "right">
+        <h1><%= link_to "LinkShells", users_path, method: "get" %></h1>
+      </div>
+      <div class="static-layout-button" align = "right">
+        <%= button_to "Games", games_path, method: "get"%>
+      </div>
+    </header>
     <%= yield %>
   </body>
 </html>

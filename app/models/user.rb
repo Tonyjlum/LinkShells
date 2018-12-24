@@ -1,4 +1,7 @@
 class User < ApplicationRecord
+  has_many :ownerships
+  has_many :games, through: :ownerships
+
   validates :email, :username, uniqueness: true
   validates :profile_img, presence: true
   validates :email, :password, length: { minimum: 5 }

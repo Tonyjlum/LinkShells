@@ -1,11 +1,10 @@
 <img src="https://i.ibb.co/sQ9ZmVS/Spash04.jpg" alt="Image" width = "100%">
-<div align="left" >
+<div align="right" >
   <%= form_tag login_in_path do %>
-    <h1>Login </h1>
-    Email   <br>
+    <h3>Login </h3>
+    Email
     <%= text_field_tag :email %>
-    <br>
-    Password   <br>
+    Password
     <%= password_field_tag :password %>
     <br><br>
     <%= submit_tag "Login" %>
