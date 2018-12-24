@@ -16,7 +16,8 @@ ActiveRecord::Schema.define(version: 2018_12_23_225458) do
     t.string "email"
     t.string "password"
     t.integer "age"
-    t.string "alias"
+    t.string "username"
+    t.string "profile_img", default: "https://image.freepik.com/free-icon/github-character-silhouette_318-40485.jpg"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

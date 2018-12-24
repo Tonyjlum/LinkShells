@@ -1,7 +1,13 @@
-<div id="splashscreen">
-    <h2>Welcome !</h2>
-    Take a look at our new products, blablabla
-    <img src="http://i.telegraph.co.uk/multimedia/archive/02182/kitten_2182000b.jpg" />
-
-    <a href="#" class="enter_link">Enter on the website</a>
+<img src="https://i.ibb.co/sQ9ZmVS/Spash04.jpg" alt="Image" width = "100%">
+<div align="left" >
+  <%= form_tag login_in_path do %>
+    <h1>Login </h1>
+    Email   <br>
+    <%= text_field_tag :email %>
+    <br>
+    Password   <br>
+    <%= password_field_tag :password %>
+    <br><br>
+    <%= submit_tag "Login" %>
+  <% end %>
 </div>

@@ -1,7 +1,18 @@
 class UsersController < ApplicationController
+  def index
+  end
+
+  def login
+    @user = User.find_by email: params[:email], password: params[:password]
+    if @user.nil?
+      render :index
+    else
+      redirect_to @user
+    end
+  end
 
   def show
-    @user = User.find(params[:id])
+    @user =  User.find(params[:id])
     #event list
     #game list
   end
