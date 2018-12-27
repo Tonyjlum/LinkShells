@@ -10,10 +10,30 @@
   </head>
 
   <body>
+    <div class="username" align="right">
+
+    <%= "Logged in as: #{User.find(session[:user_id]).username}" unless session[:user_id].nil?%>
+  </div>
     <header>
-      <div class="title" align = "right">
-        <h1><%= link_to "LinkShells", users_path, method: "get" %></h1>
-      </div>
+      <% if session[:user_id].nil?%>
+        <div align="right" >
+          <%= form_tag login_in_path do %>
+            Email
+            <%= text_field_tag :email %>
+            Password
+            <%= password_field_tag :password %>
+            <%= submit_tag "Login" %>
+          <% end %>
+          <%= button_to "Sign Up", new_user_path, method: "get" %>
+        </div>
+      <% else %>
+        <div align="right" >
+          <%= form_tag logout_path do %>
+            <input type=submit value='logout'>
+            <% end %>
+        </div>
+      <% end %>
+
       <div class="static-layout-button" align = "right">
         <%= button_to "Games", games_path, method: "get"%>
       </div>

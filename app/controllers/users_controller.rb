@@ -8,6 +8,7 @@ class UsersController < ApplicationController
       @error = "Please check your Email and Password and Try again"
       render :index
     else
+      session[:user_id] = @user.id
       redirect_to @user
     end
   end

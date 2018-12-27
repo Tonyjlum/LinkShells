@@ -1,5 +1,5 @@
 <% @games.each do |game| %>
-  <div class="game-icon" align= "center">
-    <%= link_to image_tag(game.logo, width: "25%"), game %>
-  </div>
+  <span class="game-icon" >
+    <%= link_to image_tag(game.logo, width: "30%", align: "center"), game %>
+  </span>
 <% end %>
