@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(version: 2018_12_27_194911) do
     t.string "location"
     t.integer "max_player"
     t.string "date"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

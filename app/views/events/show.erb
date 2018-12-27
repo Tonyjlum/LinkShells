@@ -1,5 +1,11 @@
 <img src="<%= @event.game.logo %>" alt="" width= "50%">
 <h1><%= @event.game.name %></h1>
+<p>Hosted by: <%= link_to @event.user.username, user_path(@event.user) %></p>
+<p>Location: <%= @event.location %></p>
 <p>Event Date: <%= @event.date %></p>
-<p>Max Players for this Event: <%= @event.max_player %></p>
+<p>Max Players for this event: <%= @event.max_player %></p>
 <p>Current Number of Players for this event:</p>
+
+<h2>Attendees</h2>
+<ol>
+</ol>

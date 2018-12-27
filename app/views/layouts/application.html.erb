@@ -11,8 +11,7 @@
 
   <body>
     <div class="username" align="right">
-
-    <%= "Logged in as: #{User.find(session[:user_id]).username}" unless session[:user_id].nil?%>
+    <%= button_to "#{User.find(session[:user_id]).username}", user_path(User.find(session[:user_id])), method: "get" unless session[:user_id].nil?%>
   </div>
     <header>
       <% if session[:user_id].nil?%>
@@ -31,6 +30,9 @@
           <%= form_tag logout_path do %>
             <input type=submit value='logout'>
             <% end %>
+        </div>
+        <div class="static-layout-button" align = "right">
+          <%= button_to "Host new Event", new_event_path, method: "get"%>
         </div>
       <% end %>
 

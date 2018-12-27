@@ -1,0 +1,14 @@
+<h1>Start a new event!</h1>
+
+<%= form_for @event do |f| %>
+  <%= f.label "Game:" %>
+  <%= f.text_field :user_id, hidden: true, value: session[:user_id]%>
+  <%= f.collection_select :game_id, @games, :id, :name %><br><br>
+  <%= f.label :location %>
+  <%= f.text_field :location %><br><br>
+  <%= f.label :max_player %>
+  <%= f.number_field :max_player , min: 2, max: 64%><br><br>
+  <%= f.label "Date(YYYY-MM-DD)"%>
+  <%= f.text_field :date %><br><br>
+  <%= f.submit "Host the Event!" %>
+<% end %>

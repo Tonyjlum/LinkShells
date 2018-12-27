@@ -77,8 +77,7 @@ end
 
 50.times do
  Event.create(
-   game_id: (real_game.id), location: "#{Faker::Address.street_address} #{Faker::Address.zip[0..4]}", max_player: ((2..real_game.max_players).to_a.sample), date: "#{Faker::Date.forward(180)}"
-)
+   game_id: (real_game.id), location: "#{Faker::Address.street_address} #{Faker::Address.zip[0..4]}", max_player: ((2..real_game.max_players).to_a.sample), date: "#{Faker::Date.forward(180)}", user_id:(1..6).to_a.sample)
 end
 
 puts "Seeded: User, Game, Ownership, & Events!"
