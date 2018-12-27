@@ -1,0 +1,7 @@
+<h1>Up coming events</h1>
+<ul>
+  <% @events.each do |event| %>
+    <%# add max space to the link %>
+    <li><%= link_to "#{event.game.name} on #{event.date}", event %></li>
+  <% end %>
+</ul>

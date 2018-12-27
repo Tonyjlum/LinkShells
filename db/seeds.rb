@@ -2,7 +2,8 @@
 User.destroy_all
 Game.destroy_all
 Ownership.destroy_all
-puts "Destroy all user, game, ownerships"
+Event.destroy_all
+puts "Destroy all user, game, ownerships, events"
 
 puts "Seeding Users..."
 #Static User Start
@@ -66,5 +67,18 @@ Ownership.create(user_id: 2, game_id: 5)
   Ownership.create(game_id: gameid, user_id: userid)
 end
 
+puts "Seeding Events"
+#static event
 
-puts "Seeded: User, Game, & Ownership!"
+#Faker Events
+def real_game
+  Game.find(Game.all.map {|g| g.id}.sample)
+end
+
+50.times do
+ Event.create(
+   game_id: (real_game.id), location: "#{Faker::Address.street_address} #{Faker::Address.zip[0..4]}", max_player: ((2..real_game.max_players).to_a.sample), date: "#{Faker::Date.forward(180)}"
+)
+end
+
+puts "Seeded: User, Game, Ownership, & Events!"

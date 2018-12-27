@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   def index
+    @events = Event.all.shuffle[0..9]
   end
 
   def login

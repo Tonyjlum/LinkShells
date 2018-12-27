@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :events
   resources :sessions
   resources :ownerships
   resources :games, only: [:index, :show]
