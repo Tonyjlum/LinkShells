@@ -5,7 +5,7 @@ class CreateUsers < ActiveRecord::Migration[5.2]
       t.string :password
       t.integer :age
       t.string :username
-      t.string :profile_img, :default => "https://image.freepik.com/free-icon/github-character-silhouette_318-40485.jpg"
+      t.string :profile_img, :default => "http://clipart-library.com/images/6Tp5ebz6c.png"
 
       t.timestamps
     end

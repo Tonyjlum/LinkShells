@@ -1,4 +1,8 @@
 <img src="https://i.ibb.co/sQ9ZmVS/Spash04.jpg" alt="Image" width = "100%">
+<% if @error %>
+  <h1><%@error %></h1>
+<% end %>
+
 <div align="right" >
   <%= form_tag login_in_path do %>
     <h3>Login </h3>
@@ -9,4 +13,5 @@
     <br><br>
     <%= submit_tag "Login" %>
   <% end %>
+  <%= button_to "Sign Up", new_user_path, method: "get" %>
 </div>

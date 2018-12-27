@@ -5,6 +5,7 @@ class UsersController < ApplicationController
   def login
     @user = User.find_by email: params[:email], password: params[:password]
     if @user.nil?
+      @error = "Please check your Email and Password and Try again"
       render :index
     else
       redirect_to @user
