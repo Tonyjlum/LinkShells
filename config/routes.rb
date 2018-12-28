@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :confirms
   resources :events
   resources :sessions
   resources :ownerships

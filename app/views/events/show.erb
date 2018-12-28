@@ -3,8 +3,17 @@
 <p>Location: <%= @event.location %></p>
 <p>Event Date: <%= @event.date %></p>
 <p>Max Players for this event: <%= @event.max_player %></p>
-<p>Current Number of Players for this event:</p>
+<p>Current Number of Players attending this event: <%= @event.users.count %></p>
+
+<% if  @event.full?%>
+  This Event is full, Find other events for <%= link_to "#{@event.game.name}", @event.game%>
+<% else %>
+  Join this event!
+<% end %>
 
 <h2>Attendees</h2>
 <ol>
+  <% @confirms.each do |confirm| %>
+    <li><%= link_to confirm.username, confirm %></li>
+  <% end %>
 </ol>

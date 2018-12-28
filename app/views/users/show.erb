@@ -15,9 +15,14 @@
   <h3>Hosting:</h3>
   <ul>
     <% @hostings.each do |host|%>
-      <li><%= link_to "#{host.game.name} on #{host.date}", host %></li>
+      <li><%= link_to "#{host.game.name}", host %> <br><%=  "#{host.date}" %></li>
     <% end %>
   </ul>
 </div>
 
 <h3>Attending:</h3>
+<ul>
+  <% @events.each do |confirms|%>
+    <li><%= link_to "#{confirms.event.game.name}", confirms.event %> <br> <%= "#{confirms.event.date}" %></li>
+  <% end %>
+</ul>

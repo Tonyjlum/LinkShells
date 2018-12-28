@@ -6,9 +6,10 @@
 <img src="https://i.ibb.co/sQ9ZmVS/Spash04.jpg" alt="Image" width = "100%">
 
 
-<h1>Upcoming Events!?</h1>
+<h1>Upcoming Events</h1>
 <ul>
   <% @events.each do |event| %>
-      <li><%= link_to "#{event.game.name} on #{event.date} at #{event.location}", event %></li>
+      <li><%= link_to "#{event.game.name}", event %> <br><%=  "#{event.date} at #{event.location}" %></li>
+      <br>
   <% end %>
 </ul>

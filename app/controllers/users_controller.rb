@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   def index
-    @events = Event.all.shuffle[0..9]
+    @events = Event.index_events
   end
 
   def login
@@ -21,6 +21,7 @@ class UsersController < ApplicationController
     else
       @hostings = @user.events
       @game_list = @user.games_by_name
+      @events = @user.confirms
     end
   end
 
@@ -38,6 +39,7 @@ class UsersController < ApplicationController
     end
   end
 
+  private
   def user_params
     params.require(:user).permit(:email, :password, :age, :username, :profile_img)
   end

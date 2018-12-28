@@ -1,7 +1,7 @@
 <h1>Up coming events</h1>
 <ul>
   <% @events.each do |event| %>
-    <%# add max space to the link %>
-    <li><%= link_to "#{event.game.name} on #{event.date}", event %></li>
+    <li><%= link_to "#{event.game.name}", event %> <br><%= "#{event.date} [#{event.full_message}]" %></li>
+    <br>
   <% end %>
 </ul>

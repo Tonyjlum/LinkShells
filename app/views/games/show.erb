@@ -1,13 +1,13 @@
 <div class="" align="center" >
   <img src="<%= @game.logo %>" alt="<%= @game.name %>" width = "60%" >
   <p><%= @game.description %></p>
-  <p>Players Per Session: <%= @game.max_players %></p>
+  <p>Max Players Per Session: <%= @game.max_players %></p>
   <p>Platform: <%= @game.platform %></p>
   <p>Active Players: <%= @game.users.count %></p>
 </div>
 <p>Events for this Game:</p>
 <ul>
   <%  @game.events.each do |event| %>
-    <li> <%= link_to event.date, event %></li>
+    <li> <%= link_to event.date, event %> Status: <%= event.full_message %></li>
   <% end %>
 </ul>

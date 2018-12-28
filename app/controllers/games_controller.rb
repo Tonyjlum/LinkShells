@@ -7,8 +7,5 @@ class GamesController < ApplicationController
 
   def show
     @game = Game.find(params[:id])
-    #show events for this game
-    #show how many people own this game
-
   end
 end

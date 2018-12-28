@@ -3,7 +3,8 @@ User.destroy_all
 Game.destroy_all
 Ownership.destroy_all
 Event.destroy_all
-puts "Destroy all user, game, ownerships, events"
+Confirm.destroy_all
+puts "Destroy all user, game, ownerships, events, and confirms"
 
 puts "Seeding Users..."
 #Static User Start
@@ -12,7 +13,7 @@ tony = User.create(email: "tonyjlum@gmail.com", password: "greentea", age: 29, u
 sean = User.create(email: "spyearwood@yahoo.com", password: "yearwood", age: 29, username: "SeanWhy", profile_img: "https://lh4.googleusercontent.com/-jBslN031COg/AAAAAAAAAAI/AAAAAAAAACM/037Hr2Z_9Uw/photo.jpg")
 
 #faker Users Start
-200.times do
+50.times do
   password = ""
   password = Faker::Hacker.ingverb until password.length > 6
   User.create(
@@ -28,7 +29,7 @@ puts "Seeding Games..."
 #static Games start
 r6 = Game.create(name: "Rainbow Six Siege", platform: "PC", max_players: 12, description: "TMaster the art of destruction and gadgetry in Tom Clancy’s Rainbow Six Siege. Face intense close quarters combat, high lethality, tactical decision making, team play and explosive action within every moment. Experience a new era of fierce firefights and expert strategy born from the rich legacy of past Tom Clancy's Rainbow Six games. Engage in a brand-new style of assault using an unrivaled level of destruction and gadgetry. On defense, coordinate with your team to transform your environments into strongholds. Trap, fortify and create defensive systems to prevent being breached by the enemy. On attack, lead your team through narrow corridors, barricaded doorways and reinforced walls. Combine tactical maps, observation drones, rappelling and more to plan, attack and defuse every situation. Choose from dozens of highly trained, Special Forces operators from around the world. Deploy the latest technology to track enemy movement. Shatter walls to open new lines of fire. Breach ceilings and floors to create new access points. Employ every weapon and gadget from your deadly arsenal to locate, manipulate and destroy your enemies and the environment around them. Experience new strategies and tactics as Rainbow Six Siege evolves over time. Change the rules of Siege with every update that includes new operators, weapons, gadgets and maps. Evolve alongside the ever-changing landscape with your friends and become the most experienced and dangerous operators out there. Compete against others from around the world in ranked match play. Grab your best squad and join the competitive community in weekly tournaments or watch the best professional teams battle it out in the Rainbow Six Siege Pro League.", logo: "https://i.ibb.co/yqKCSpk/R6S.jpg")
 
-Game.create(name: "Destiny 2", platform: "PC", max_players: 6, description: "Destiny 2 is a first-person shooter game that incorporates role-playing and massively multiplayer online game elements. The original Destiny includes on-the-fly matchmaking that allowed players to communicate only with other players with whom they were matched by the game. Destiny 2 features a more optimal way of matchmaking called Guided Games, which allows players to search for clans who may need additional players for activities, such as strikes or raids. Activities in Destiny 2 are divided among player versus environment  and player versus player  game types.", logo: "https://i.ibb.co/mtBNDKZ/Destiny2.jpg")
+Game.create(name: "Destiny 2", platform: "PC", max_players: 12, description: "Destiny 2 is a first-person shooter game that incorporates role-playing and massively multiplayer online game elements. The original Destiny includes on-the-fly matchmaking that allowed players to communicate only with other players with whom they were matched by the game. Destiny 2 features a more optimal way of matchmaking called Guided Games, which allows players to search for clans who may need additional players for activities, such as strikes or raids. Activities in Destiny 2 are divided among player versus environment  and player versus player  game types.", logo: "https://i.ibb.co/mtBNDKZ/Destiny2.jpg")
 
 Game.create(name: "Dota2", platform: "PC", max_players: 10 , description: "Every day, millions of players worldwide enter battle as one of over a hundred Dota heroes. And no matter if it's their 10th hour of play or 1,000th, there's always something new to discover. With regular updates that ensure a constant evolution of gameplay, features, and heroes, Dota 2 has truly taken on a life of its own. When it comes to diversity of heroes, abilities, and powerful items, Dota boasts an endless array—no two games are the same. Any hero can fill multiple roles, and there's an abundance of items to help meet the needs of each game. Dota doesn't provide limitations on how to play, it empowers you to express your own style. Competitive balance is Dota's crown jewel, and to ensure everyone is playing on an even field, the core content of the game—like the vast pool of heroes—is available to all players. Fans can collect cosmetics for heroes and fun add-ons for the world they inhabit, but everything you need to play is already included before you join your first match. Dota is deep, and constantly evolving, but it's never too late to join. Learn the ropes playing co-op vs. bots. Sharpen your skills in the hero demo mode. Jump into the behavior- and skill-based matchmaking system that ensures you'll
 be matched with the right players each game.", logo: "https://i.ibb.co/m4Ck3YH/Dota2.jpg")
@@ -58,7 +59,7 @@ Ownership.create(user_id: 2, game_id: 3)
 Ownership.create(user_id: 2, game_id: 5)
 
 #faker Ownership start
-1000.times do
+200.times do
   gameid, userid = 1, 1
   until Ownership.find_by(game_id: gameid, user_id: userid).nil?
     gameid = Game.all.map {|g|g.id}.sample
@@ -75,9 +76,24 @@ def real_game
   Game.find(Game.all.map {|g| g.id}.sample)
 end
 
-50.times do
+40.times do
  Event.create(
    game_id: (real_game.id), location: "#{Faker::Address.street_address} #{Faker::Address.zip[0..4]}", max_player: ((2..real_game.max_players).to_a.sample), date: "#{Faker::Date.forward(180)}", user_id:(1..6).to_a.sample)
 end
+#static confirms
+puts "Seeding Confirms"
+Confirm.create(event_id: 1, user_id: 1)
+Confirm.create(event_id: 2, user_id: 1)
+Confirm.create(event_id: 1, user_id: 2)
+Confirm.create(event_id: 2, user_id: 3)
 
-puts "Seeded: User, Game, Ownership, & Events!"
+150.times do
+  eventid, userid = 1,1
+  until Confirm.find_by(event_id: eventid, user_id: userid).nil? && Event.find(eventid).max_player > Event.find(eventid).users.count
+    eventid = Event.all.map {|e|e.id}.sample
+    userid = User.all.map {|u|u.id}.sample
+  end
+  Confirm.create(event_id: eventid, user_id: userid)
+end
+
+puts "Seeded: User, Game, Ownership, Events, & Confirms!"

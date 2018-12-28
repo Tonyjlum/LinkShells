@@ -6,7 +6,7 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
-    #take in all confrims for this event and list
+    @confirms = @event.sorted_users
   end
 
   def new

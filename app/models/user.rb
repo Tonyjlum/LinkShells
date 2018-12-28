@@ -2,6 +2,7 @@ class User < ApplicationRecord
   has_many :ownerships
   has_many :games, through: :ownerships
   has_many :events
+  has_many :confirms
 
   validates :email, :username, uniqueness: true
   validates :profile_img, presence: true
@@ -11,5 +12,6 @@ class User < ApplicationRecord
   def games_by_name
     self.games.sort_by{|g| g.name}
   end
+
 
 end
