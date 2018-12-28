@@ -1,4 +1,12 @@
 <h1>Start a new event!</h1>
+<ul>
+  <% if @errors %>
+    <% @errors.each do |e| %>
+        <li><%= e %></li>
+    <% end %>
+  <% end %>
+</ul>
+
 
 <%= form_for @event do |f| %>
   <%= f.label "Game:" %>

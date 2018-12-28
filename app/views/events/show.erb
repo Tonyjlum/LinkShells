@@ -1,5 +1,4 @@
-<img src="<%= @event.game.logo %>" alt="" width= "50%">
-<h1><%= @event.game.name %></h1>
+<%= link_to image_tag(@event.game.logo, width: "50%"), @event.game %>
 <p>Hosted by: <%= link_to @event.user.username, user_path(@event.user) %></p>
 <p>Location: <%= @event.location %></p>
 <p>Event Date: <%= @event.date %></p>

@@ -7,7 +7,7 @@ class UsersController < ApplicationController
     @user = User.find_by email: params[:email], password: params[:password]
     if @user.nil?
       @error = "Please check your Email and Password and Try again"
-      render :index
+      redirect_to :root
     else
       session[:user_id] = @user.id
       redirect_to @user
@@ -15,9 +15,13 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user =  User.find(params[:id])
-    @hostings = @user.events
-    @game_list = @user.games_by_name
+    @user = User.find(params[:id])
+    if @user.nil?
+      redirect_to :root
+    else
+      @hostings = @user.events
+      @game_list = @user.games_by_name
+    end
   end
 
   def new

@@ -20,7 +20,13 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.create(event_params)
-    redirect_to @event
+    if @event.valid?
+      redirect_to @event
+    else
+      @games = Game.sort_by_name
+      @errors = @event.errors.full_messages
+      render :new
+    end
   end
 
   #search for event by game?
