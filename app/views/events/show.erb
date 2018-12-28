@@ -5,10 +5,15 @@
 <p>Max Players for this event: <%= @event.max_player %></p>
 <p>Current Number of Players attending this event: <%= @event.users.count %></p>
 
-<% if  @event.full?%>
+<% if @event.users.include?(User.find(session[:user_id]))%>
+
+<% elsif @event.full? %>
   This Event is full, Find other events for <%= link_to "#{@event.game.name}", @event.game%>
+<% elsif session[:user_id].nil?%>
+  Login to Join this Event
 <% else %>
-  Join this event!
+  <% session[:event_id] = @event.id %>
+  <%= button_to "Join", join_event_path %>
 <% end %>
 
 <h2>Attendees</h2>
