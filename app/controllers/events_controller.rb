@@ -29,6 +29,16 @@ class EventsController < ApplicationController
     end
   end
 
+  def destroy
+    Event.find(session[:event_id]).destroy
+    session[:event_id] = nil
+    @user = User.find(session[:user_id])
+    @hostings = @user.events
+    @game_list = @user.games_by_name
+    @events = @user.confirms
+    redirect_to @user
+  end
+
   #search for event by game?
 
   def event_params

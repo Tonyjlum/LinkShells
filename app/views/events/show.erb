@@ -5,12 +5,14 @@
 <p>Max Players for this event: <%= @event.max_player %></p>
 <p>Current Number of Players attending this event: <%= @event.users.count %></p>
 
-<% if @event.users.include?(User.find(session[:user_id]))%>
 
+<% if session[:user_id].nil?%>
+  Login to Join this Event
+<% elsif @event.users.include?(User.find(session[:user_id]))%>
+  <% session[:event_id] = @event.id  %>
+  <%= button_to "Leave Event", leave_event_path  %>
 <% elsif @event.full? %>
   This Event is full, Find other events for <%= link_to "#{@event.game.name}", @event.game%>
-<% elsif session[:user_id].nil?%>
-  Login to Join this Event
 <% else %>
   <% session[:event_id] = @event.id %>
   <%= button_to "Join", join_event_path %>
@@ -22,3 +24,8 @@
     <li><%= link_to confirm.username, confirm %></li>
   <% end %>
 </ol>
+
+<% if @event.user == User.find(session[:user_id]) %>
+  <% session[:event_id] = @event.id %>
+  <%= button_to "Delete Event!?", delete_event_path%>
+<% end %>
