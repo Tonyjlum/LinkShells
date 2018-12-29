@@ -24,8 +24,9 @@
     <li><%= link_to confirm.username, confirm %></li>
   <% end %>
 </ol>
-
+<% unless session[:user_id].nil?%>
 <% if @event.user == User.find(session[:user_id]) %>
   <% session[:event_id] = @event.id %>
   <%= button_to "Delete Event!?", delete_event_path%>
+<% end %>
 <% end %>

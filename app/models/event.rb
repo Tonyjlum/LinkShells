@@ -1,7 +1,7 @@
 class Event < ApplicationRecord
   belongs_to :game
   belongs_to :user
-  has_many :confirms
+  has_many :confirms, :dependent => :destroy 
   has_many :users, through: :confirms
 
   validates :location, presence: true

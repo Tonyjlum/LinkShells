@@ -22,7 +22,7 @@
 
 <h3>Attending:</h3>
 <ul>
-  <% @events.each do |confirms|%>
+  <% @events.map do |confirms|%>
     <li><%= link_to "#{confirms.event.game.name}", confirms.event %> <br> <%= "#{confirms.event.date}" %></li>
   <% end %>
 </ul>
