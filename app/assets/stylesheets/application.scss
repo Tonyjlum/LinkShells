@@ -1,0 +1,26 @@
+@import "bootstrap";
+
+body {
+  background-color: #fff;
+   border: 20px;
+}
+
+body {
+margin-left:13%;
+margin-right:13%;
+margin-bottom:2%;
+margin-top:0%;
+}
+.navbar .navbar-nav {
+  display: inline-block;
+  float: none;
+  vertical-align: top;
+}
+
+.navbar .navbar-collapse {
+  font-size: 20px;
+}
+
+.card-columns {
+    column-count: 3;
+}
