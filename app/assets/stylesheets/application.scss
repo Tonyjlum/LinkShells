@@ -1,15 +1,17 @@
 @import "bootstrap";
 
-body {
-  background-color: #fff;
-   border: 20px;
+.container {
+  display: inline-block;
+  text-align: center;
 }
 
 body {
-margin-left:13%;
-margin-right:13%;
-margin-bottom:2%;
-margin-top:0%;
+  background-color: #fff;
+  border: 20px;
+  margin-left:13%;
+  margin-right:13%;
+  margin-bottom:2%;
+  margin-top:0%;
 }
 .navbar .navbar-nav {
   display: inline-block;
@@ -19,8 +21,4 @@ margin-top:0%;
 
 .navbar .navbar-collapse {
   font-size: 20px;
-}
-
-.card-columns {
-    column-count: 3;
 }
