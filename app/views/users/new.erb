@@ -1,22 +1,21 @@
 <h1>Make a new LinkShell Account</h1>
 <ul>
-  <% if @errors %>
-    <% @errors.each do |e| %>
-        <li><%= e %></li>
-    <% end %>
+  <% if flash[:notice] %>
+  <div class="alert alert-warning" role="alert">
+    <%= flash[:notice]  %>
   <% end %>
+</div>
 </ul>
-
 <%= form_for @user do |f| %>
   <%= f.label :username %>
-  <%= f.text_field :username %><br>
+  <%= f.text_field :username, class: "form-control"%><br>
   <%= f.label :email %>
-  <%= f.text_field :email %><br>
+  <%= f.text_field :email, class: "form-control" %><br>
   <%= f.label :password %>
-  <%= f.password_field :password %><br>
+  <%= f.password_field :password, class: "form-control" %><br>
   <%= f.label :age %>
-  <%= f.number_field :age %><br>
+  <%= f.number_field :age, class: "form-control" %><br>
   <%= f.label "Profile Picture Link" %>
-  <%= f.text_field :profile_img %><br>
-  <%= f.submit "Make a new Account" %>
+  <%= f.text_field :profile_img, class: "form-control" %><br>
+  <%= f.submit "Make a new Account", form: "new_user" %>
 <% end %>

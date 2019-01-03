@@ -1,7 +1,7 @@
 class Event < ApplicationRecord
   belongs_to :game
   belongs_to :user
-  has_many :confirms, :dependent => :destroy 
+  has_many :confirms, :dependent => :destroy
   has_many :users, through: :confirms
 
   validates :location, presence: true
@@ -17,7 +17,7 @@ class Event < ApplicationRecord
   end
 
   def self.index_events
-    Event.all.select {|e| !e.full?}.shuffle[0..9].sort_by {|e| e.date}
+    Event.all.select {|e| !e.full?}.shuffle[0..14].sort_by {|e| e.date}
   end
 
   def sorted_users

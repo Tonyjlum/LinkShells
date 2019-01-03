@@ -1,13 +1,20 @@
 <div class="" align="center" >
-  <img src="<%= @game.logo %>" alt="<%= @game.name %>" width = "60%" >
+  <img src="<%= @game.logo %>" alt="<%= @game.name %>" width = "75%" >
   <p><%= @game.description %></p>
   <p>Max Players Per Session: <%= @game.max_players %></p>
   <p>Platform: <%= @game.platform %></p>
   <p>Active Players: <%= @game.users.count %></p>
 </div>
-<p>Events for this Game:</p>
-<ul>
-  <%  @game.events.each do |event| %>
-    <li> <%= link_to event.date, event %> Status: <%= event.full_message %></li>
+<h3 align= "center">Events</h3>
+<div class="card-columns" style="column-gap: 30px;">
+  <% @game.events.each do |event| %>
+  <div class="card" style="margin-bottom: 30px;">
+    <div class="card-body" style="background-color: #<%= event.full? ? "A9A9A9" : hex_color_sample  %>;" align= "center">
+      <%= link_to event.date, event %>
+      <%= " [#{event.full_message}]" %><br>
+      <%= "#{event.location}" %><br>
+      <%= "#{event.max_player - event.confirms.count} slots left" %>
+    </div>
+  </div>
   <% end %>
-</ul>
+</div>

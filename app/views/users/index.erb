@@ -1,15 +1,21 @@
 <ul>
-  <% if @errors %>
-    <%= @errors %>
+  <% if flash[:notice] %>
+    <%= flash[:notice] %>
   <% end %>
 </ul>
-<img src="https://i.ibb.co/sQ9ZmVS/Spash04.jpg" alt="Image" width = "100%">
 
+<img src="https://i.ibb.co/sQ9ZmVS/Spash04.jpg" alt="Image" width = "100%"">
 
-<h1>Upcoming Events</h1>
-<ul>
+<h3 align= "center">Upcoming Events</h3>
+<div class="card-columns" style="column-gap: 30px;">
   <% @events.each do |event| %>
-      <li><%= link_to "#{event.game.name}", event %> <br><%=  "#{event.date} at #{event.location}" %></li>
-      <br>
+  <div class="card" style="margin-bottom: 30px;">
+    <div class="card-body" style="background-color: #<%= "#{hex_color_sample}" %>;" align= "center">
+      <%= link_to image_tag(event.game.logo, width: "100%", class: "img-responsive center-block"), event %> <br>
+      <%= "#{event.date}" %><br>
+      <%= "#{event.location}" %><br>
+      <%= "#{event.max_player - event.confirms.count} slots left" %>
+    </div>
+  </div>
   <% end %>
-</ul>
+</div>

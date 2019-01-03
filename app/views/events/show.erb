@@ -1,4 +1,7 @@
-<%= link_to image_tag(@event.game.logo, width: "50%"), @event.game %>
+<div class="" align="center">
+
+<%= link_to image_tag(@event.game.logo, width: "50%", class: "img-responsive center-block"), @event.game %>
+</div>
 <p>Hosted by: <%= link_to @event.user.username, user_path(@event.user) %></p>
 <p>Location: <%= @event.location %></p>
 <p>Event Date: <%= @event.date %></p>
@@ -7,7 +10,11 @@
 
 
 <% if session[:user_id].nil?%>
-  Login to Join this Event
+  <% if @event.full? %>
+    This Event is full, Find other events for <%= link_to "#{@event.game.name}", @event.game%>
+  <% else %>
+    Login to Join this Event
+  <% end  %>
 <% elsif @event.users.include?(User.find(session[:user_id]))%>
   <% session[:event_id] = @event.id  %>
   <%= button_to "Leave Event", leave_event_path  %>
@@ -15,18 +22,27 @@
   This Event is full, Find other events for <%= link_to "#{@event.game.name}", @event.game%>
 <% else %>
   <% session[:event_id] = @event.id %>
-  <%= button_to "Join", join_event_path %>
+  <%= button_to "Join Event", join_event_path %>
 <% end %>
 
-<h2>Attendees</h2>
-<ol>
+<h2 align= "center">Attendees</h2>
+
+<div class="card-columns " style="column-gap: 60px;">
   <% @confirms.each do |confirm| %>
-    <li><%= link_to confirm.username, confirm %></li>
+  <div class="card" style="margin-bottom: 60px;">
+    <div class="card-body" align= "center">
+      <img src="<%= confirm.profile_img %>" alt="" width = "95%"><br>
+
+      <%= link_to confirm.username, confirm %>
+    </div>
+  </div>
   <% end %>
-</ol>
+</div>
+
+
 <% unless session[:user_id].nil?%>
 <% if @event.user == User.find(session[:user_id]) %>
   <% session[:event_id] = @event.id %>
-  <%= button_to "Delete Event!?", delete_event_path%>
+  <%= button_to "Delete Event", delete_event_path%>
 <% end %>
 <% end %>

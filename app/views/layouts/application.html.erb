@@ -5,47 +5,55 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <!-- BOOTSTRAP CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="../../assets/stylesheets/application.css">
+
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <div class="username" align="right">
-    <%= button_to "#{User.find(session[:user_id]).username}", user_path(User.find(session[:user_id])), method: "get" unless session[:user_id].nil?%>
-  </div>
-    <header>
-      <% if session[:user_id].nil?%>
-        <div align="right" >
-          <%= form_tag login_in_path do %>
-            Email
-            <%= text_field_tag :email %>
-            Password
-            <%= password_field_tag :password %>
-            <%= submit_tag "Login" %>
+  <header>
+    <nav class="navbar navbar-fixed-top navbar-expand-lg navbar-light" style="background-color: #<%= hex_color_sample %>">
+      <a class="navbar-brand" href="/users/<%= session[:user_id] %>"><%= User.find(session[:user_id]).username unless session[:user_id].nil?%></a>
+      <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/games">Games</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/events">Events</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href= "/events/new"><%= "Host" if session[:user_id] %></a>
+        </li>
+          <% if session[:user_id].nil? %>
+          <li class="nav-item">
+            <a class="nav-link" href= <%= new_user_path %>>Sign Up</a>
+          </li>
+          <% else %>
+          <li class="nav-item" >
+            <%= link_to "Log Out", logout_path, method: :delete, class: "nav-link"%>
+          </li>
           <% end %>
-          <%= button_to "Sign Up", new_user_path, method: "get" %>
-        </div>
-      <% else %>
-        <div align="right" >
-          <%= form_tag logout_path do %>
-            <input type=submit value='logout'>
-            <% end %>
-        </div>
-        <div class="static-layout-button" align = "right">
-          <%= button_to "Host new Event", new_event_path, method: "get"%>
-        </div>
+      </ul>
+      </div>
+    <div align="right" >
+      <% if session[:user_id].nil? && !current_page?("/users/new")%>
+        <%= form_tag login_in_path do %>
+        Email <%= text_field_tag :email %>
+        Password <%= password_field_tag :password %>
+        <%= submit_tag "Login"%>
+        <% end %>
       <% end %>
+    </div>
+  </nav>
+  </header>
 
-      <div class="static-layout-button" align = "right">
-        <%= button_to "Home", :root, method: "get"%>
-      </div>
-      <div class="static-layout-button" align = "right">
-        <%= button_to "Games", games_path, method: "get"%>
-      </div>
-      <div class="static-layout-button" align = "right">
-        <%= button_to "Events", events_path, method: "get"%>
-      </div>
-    </header>
+  <body>
     <%= yield %>
   </body>
 </html>

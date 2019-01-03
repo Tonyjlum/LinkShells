@@ -32,10 +32,30 @@ class UsersController < ApplicationController
   def create
     @user = User.create(user_params)
     if @user.valid?
+      flash[:notice] = "You account was sussessfully made."
+      session[:user_id] = @user.id
       redirect_to @user
     else
-      @errors = @user.errors.full_messages
-      render :new
+      flash[:notice] = @user.errors.full_messages
+      redirect_to "/users/new"
+    end
+  end
+
+  def edit
+    @user = User.find(params[:id])
+    unless @user.id == session[:user_id]
+      redirect_to :root
+    end
+  end
+
+  def update
+    @user = User.find(params[:id])
+    @user.update(user_params)
+    if @user.valid?
+      redirect_to @user
+    else
+      flash[:notice] = @user.errors.full_messages
+      redirect_to "/users/#{params[:id]}/edit"
     end
   end
 

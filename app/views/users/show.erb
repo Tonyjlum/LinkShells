@@ -1,15 +1,23 @@
-<h1><%= @user.username %></h1>
-<img src="<%= @user.profile_img %>" alt="<%= @user.username %>" width = "200px">
+<h3><%= flash[:notice] %></h3>
 
+<span align="right">
+  <h1><%="#{@user.username}"%> </h1>
+<% if session[:user_id] == @user.id %>
+<%= button_to "Update information", edit_user_path(@user), method: "get"%>
+<% end %>
 
-<div class="game-list">
+<img src="<%= @user.profile_img %>" alt="<%= @user.username %>" width = "200px" align="right">
+
+</span>
+
+<span class="game-list">
   <h3>Game List</h3>
   <ul>
     <% @game_list.each do |game| %>
       <li><%= link_to game.name, game %></li>
     <% end %>
   </ul>
-</div>
+</span>
 
 <div class="event-list">
   <h3>Hosting:</h3>

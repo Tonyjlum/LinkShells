@@ -1,5 +1,32 @@
-<% @games.each do |game| %>
-  <span class="game-icon" >
-    <%= link_to image_tag(game.logo, width: "30%", align: "center"), game %>
-  </span>
-<% end %>
+<div class="card-columns" style="column-gap: 30px;">
+  <% @games.each do |game| %>
+    <div class="card" style="margin-bottom: 30px;">
+      <%= link_to image_tag(game.logo, class: "img-responsive center-block"), game %>
+      <div class="card-body">
+        <h5><%= game.platform %></h5>
+      <h5 class="card-title"><%= "Active Players: #{game.ownerships.count}" %></h5>
+      <span class="card-text">
+        <% game.random_three_open_events.each do |event| %>
+        [ <%= link_to event.date, event%> ]
+      <% end %>
+      <% if game.random_three_open_events.count == 0%>
+        <%= "There are no upcoming events." %>
+      <% end %>
+    </span>
+    </div>
+    <div class="card-footer">
+      <large class="text-muted">
+        <%= game.open_events.count unless game.open_events.count == 0%>
+        <% case game.open_events.count %>
+        <% when 1 %>
+          <%= "open event" %>
+        <% when 0 %>
+          <%= link_to "Make a new Event", "events/new", class: "nav-link" %>
+        <% else %>
+          <%= "open events" %>
+        <% end %>
+      </large>
+    </div>
+    </div>
+  <% end %>
+  </div>
