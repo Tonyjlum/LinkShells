@@ -19,7 +19,7 @@
     <%= f.label :max_player %>
     <%= f.number_field :max_player , min: 2, max: 64, class: "form-control"%><br>
     <%= f.label "Date"%>
-    <%= f.date_field :date, class: "form-control"%><br>
+    <%= f.date_field :date, class: "form-control",  min: Date.today%><br>
   </div>
     <%= f.submit "Host the Event!", class: "btn btn-primary btn-block col-2 mx-auto" %>
 <% end %>

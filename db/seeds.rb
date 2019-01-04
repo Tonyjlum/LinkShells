@@ -47,7 +47,7 @@ Game.create(name: "Dota2", platform: "PC", max_players: 10 , description: "Every
 
 Game.create(name: "Overwatch", platform: "PC", max_players: 12 , description: "Overwatch features a number of different game modes, principally designed around squad-based combat with two opposing teams of six players each. Players select one of over two dozen pre-made hero characters from one of three class types: Damage heroes that deal most of the damage to attack or defend control points, Tank heroes that can absorb a large amount of damage, and Support heroes that provide healing or other buffs for their teammates. Each hero has a unique skill kit, defining their intrinsic attributes like health points and running speed, their primary attacks, several active and passive skills, and an ultimate ability that can only be used after it has been charged through dealing damage.", logo: "https://i.ibb.co/4MvdSzY/Overwatch.png")
 
-Game.create(name: "PlayerUnknown BattleGrounds", platform: "PC", max_players: 4, description: "PLAYERUNKNOWN'S BATTLEGROUNDS is a battle royale shooter that pits 100 players against each other in a struggle for survival. Gather supplies and outwit your opponents to become the last person standing.
+Game.create(name: "PUBG", platform: "PC", max_players: 4, description: "PLAYERUNKNOWN'S BATTLEGROUNDS is a battle royale shooter that pits 100 players against each other in a struggle for survival. Gather supplies and outwit your opponents to become the last person standing.
 PLAYERUNKNOWN, aka Brendan Greene, is a pioneer of the battle royale genre and the creator of the battle royale game modes in the ARMA series and H1Z1: King of the Kill. At PUBG Corp., Greene is working with a veteran team of developers to make PUBG into the world's premiere battle royale experience.
 ", logo: "https://i.ibb.co/smdkvSK/Pubg.png")
 
@@ -76,7 +76,7 @@ Game.create(name: "Borderlands 2", platform: "PC", max_players: 4, description: 
 
 Game.create(name: "TeamFortress 2", platform: "PC", max_players: 6, description: "Team Fortress 2 has similar gameplay to previous releases in the series due to its focus on two opposing teams competing for a combat-based objective. In the game's fiction, the teams are composed of mercenaries hired by two feuding brothers to protect the company assets belonging to one brother while trying to destroy those of the other; the teams are thus represented by the names of these companies: Reliable Excavation & Demolition (RED) and Builders League United (BLU). Players can choose to play as one of nine character classes in these teams, each with his own unique strengths, weaknesses, and weapons.", logo: "https://i.ibb.co/ssk70GF/tf2.png")
 
-Game.create(name: "Counter Strike Global Offensive", platform: "PC", max_players: 10, description: "Global Offensive, like prior games in the Counter-Strike series, is an objective-based, multiplayer first-person shooter. Two opposing teams, known as the Terrorists and the Counter Terrorists, compete in game modes to complete objectives, such as securing a location to plant or defuse a bomb and rescuing or guarding hostages. At the end of each round, players are rewarded based on their individual performance with in-game currency to spend on more powerful weapons in subsequent rounds. Winning rounds results in more money than losing, and completing objectives such as killing enemy players gives cash bonuses. Uncooperative actions, such as killing teammates, results in a penalty.", logo: "https://i.ibb.co/rfV81pX/csgo.png")
+Game.create(name: "Counter Strike GO", platform: "PC", max_players: 10, description: "Global Offensive, like prior games in the Counter-Strike series, is an objective-based, multiplayer first-person shooter. Two opposing teams, known as the Terrorists and the Counter Terrorists, compete in game modes to complete objectives, such as securing a location to plant or defuse a bomb and rescuing or guarding hostages. At the end of each round, players are rewarded based on their individual performance with in-game currency to spend on more powerful weapons in subsequent rounds. Winning rounds results in more money than losing, and completing objectives such as killing enemy players gives cash bonuses. Uncooperative actions, such as killing teammates, results in a penalty.", logo: "https://i.ibb.co/rfV81pX/csgo.png")
 
 
 puts "Seeding Ownerships..."
@@ -105,6 +105,7 @@ end
 puts "Seeding Events"
 #static event
 
+Event.create(game_id: 10, location: "Flatiron School", max_player: 24, date: "2019-01-04", user_id: 1)
 #Faker Events
 def real_game
   Game.find(Game.all.map {|g| g.id}.sample)
@@ -118,10 +119,11 @@ end
 end
 #static confirms
 puts "Seeding Confirms"
-Confirm.create(event_id: 1, user_id: 1)
-Confirm.create(event_id: 2, user_id: 1)
-Confirm.create(event_id: 1, user_id: 2)
-Confirm.create(event_id: 2, user_id: 3)
+Event.first.max_player.times do
+  player_id = User.all.map {|u|u.id}.sample
+  Confirm.create(event_id: 1, user_id: player_id) unless Confirm.find_by(user_id: player_id)
+end
+
 
 800.times do
   eventid, userid = 1,1

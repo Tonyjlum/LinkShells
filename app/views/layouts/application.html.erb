@@ -29,13 +29,14 @@
         <li class="nav-item">
           <a class="nav-link" href="/events">Events</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href= "/events/new"><%= "Host" if session[:user_id] %></a>
-        </li>
           <% if session[:user_id].nil? %>
             <li class="nav-item">
               <a class="nav-link" href= <%= new_user_path %>>Sign Up</a>
             </li>
+          <% else %>
+          <li class="nav-item">
+            <a class="nav-link" href= "/events/new"><%= "Host" if session[:user_id] %></a>
+          </li>
           <% end %>
       </ul>
       </div>
