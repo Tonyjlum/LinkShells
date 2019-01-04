@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   def index
-    @events = Event.all
+    @events = Event.sort_by_date
     @open_events = Event.open_events
   end
 
@@ -21,6 +21,7 @@ class EventsController < ApplicationController
   def create
     @event = Event.create(event_params)
     if @event.valid?
+      Confirm.create(user_id: session[:user_id], event_id: @event.id)
       redirect_to @event
     else
       @games = Game.sort_by_name

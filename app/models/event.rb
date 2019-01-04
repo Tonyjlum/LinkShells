@@ -28,6 +28,9 @@ class Event < ApplicationRecord
     Event.all.select {|e| !e.full?}
   end
 
+  def self.sort_by_date
+    Event.all.sort_by {|e|e.date}
+  end
 
 
 end

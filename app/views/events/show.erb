@@ -1,5 +1,5 @@
 <div class="" align="center">
-  <%= link_to image_tag(@event.game.logo, width: "50%", class: "img-responsive center-block"), @event.game %>
+  <%= link_to image_tag(@event.game.logo, width: "55%", class: "img-responsive center-block"), @event.game %>
 </div>
 <div class="">
 
@@ -20,12 +20,12 @@
   <% end  %>
 <% elsif @event.users.include?(User.find(session[:user_id]))%>
   <% session[:event_id] = @event.id  %>
-  <%= button_to "Leave Event", leave_event_path, class: "btn btn-danger"  %>
+  <%= button_to "Leave Event", leave_event_path, class: "btn btn-danger col-2"%>
 <% elsif @event.full? %>
   This Event is full, Find other events for <%= link_to "#{@event.game.name}", @event.game%>
 <% else %>
   <% session[:event_id] = @event.id %>
-  <%= button_to "Join Event", join_event_path, class: "btn btn-primary"%>
+  <%= button_to "Join Event", join_event_path, class: "btn btn-primary col-2"%>
 <% end %>
 
 <h2 align= "center">Attendees</h2>
@@ -46,6 +46,6 @@
 <% unless session[:user_id].nil?%>
   <% if @event.user == User.find(session[:user_id]) %>
     <% session[:event_id] = @event.id %>
-    <%= button_to "Delete Event", delete_event_path, class: "btn btn-danger"%>
+    <%= button_to "Delete Event", delete_event_path, class: "btn btn-danger btn-block col-4 mx-auto"%>
   <% end %>
 <% end %>

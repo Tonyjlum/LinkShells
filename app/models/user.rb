@@ -13,5 +13,9 @@ class User < ApplicationRecord
     self.games.sort_by{|g| g.name}
   end
 
+  def self.random_user_id
+    User.all.map {|u|u.id}.sample
+  end
+
 
 end

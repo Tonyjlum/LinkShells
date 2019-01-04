@@ -14,12 +14,15 @@
   </head>
 
   <header>
-    <nav class="navbar navbar-fixed-top navbar-expand-lg navbar-light border-dark" style="background-color: #<%= hex_color_sample %>">
+    <nav class="navbar navbar-fixed-top navbar-expand-lg navbar-light border-dark" style="background-color: #<%= hex_color_sample %>" >
       <a class="navbar-brand" href="/users/<%= session[:user_id] %>"><%= User.find(session[:user_id]).username unless session[:user_id].nil?%></a>
-      <div class="collapse navbar-collapse" id="navbarNav">
+      <div class="collapse navbar-collapse " id="navbarNav">
       <ul class="navbar-nav">
-        <li class="nav-item active">
+        <li class="nav-item ">
           <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/users/<%= User.random_user_id %>">Discover</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/games">Games</a>
@@ -36,9 +39,10 @@
           </li>
           <% else %>
           <li class="nav-item" >
-            <%= link_to "Log Out", logout_path, method: :delete, class: "nav-link"%>
+            <%= link_to "Sign out", logout_path, method: :delete, class: "nav-link"%>
           </li>
           <% end %>
+
       </ul>
       </div>
     <div align="right" >
@@ -46,7 +50,7 @@
         <%= form_tag login_in_path do %>
         Email <%= text_field_tag :email %>
         Password <%= password_field_tag :password %>
-        <%= submit_tag "Login"%>
+        <%= submit_tag "Login", class: "btn btn-secondary"%>
         <% end %>
       <% end %>
     </div>

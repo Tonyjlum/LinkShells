@@ -12,9 +12,17 @@ end
 
 puts "Seeding Users..."
 #Static User Start
-tony = User.create(email: "tonyjlum@gmail.com", password: "greentea", age: 29, username: "Mumbles", profile_img: "https://yt3.ggpht.com/a-/AN66SAxPCaupIFF2bzXdkTMhOgP9G-RyGrwut6nEAw=s900-mo-c-c0xffffffff-rj-k-no")
+User.create(email: "tonyjlum@gmail.com", password: "greentea", age: 29, username: "Mumbles", profile_img: "https://yt3.ggpht.com/a-/AN66SAxPCaupIFF2bzXdkTMhOgP9G-RyGrwut6nEAw=s900-mo-c-c0xffffffff-rj-k-no")
 
-sean = User.create(email: "spyearwood@yahoo.com", password: "yearwood", age: 29, username: "SeanWhy", profile_img: "https://lh4.googleusercontent.com/-jBslN031COg/AAAAAAAAAAI/AAAAAAAAACM/037Hr2Z_9Uw/photo.jpg")
+User.create(email: "spyearwood@yahoo.com", password: "yearwood", age: 29, username: "SeanWhy", profile_img: "https://lh4.googleusercontent.com/-jBslN031COg/AAAAAAAAAAI/AAAAAAAAACM/037Hr2Z_9Uw/photo.jpg")
+
+User.create(email: "sonik@steam.com", password: "sonik", age: 29, username: "Sonik", profile_img: "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/f2/f22f16bddf1b0991412b2efa689131a25237dd7d_full.jpg")
+
+User.create(email: "jimmyree@steam.com", password: "jimmyy", age: 22, username: "Jimmyree", profile_img: "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/f1/f13c2220c8304c8ec96db2657b770355b7c43ac0_full.jpg")
+
+User.create(email: "hoolahoop@steam.com", password: "hoolahoop", age: 29, username: "Hoolahoop", profile_img: "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/a8/a85e031dbf77309235ee9272f647455aee1abdf8_full.jpg" )
+
+
 
 #faker Users Start
 148.times do
@@ -85,7 +93,7 @@ Ownership.create(user_id: 2, game_id: 3)
 Ownership.create(user_id: 2, game_id: 5)
 
 #faker Ownership start
-600.times do
+1000.times do
   gameid, userid = 1, 1
   until Ownership.find_by(game_id: gameid, user_id: userid).nil?
     gameid = Game.all.map {|g|g.id}.sample
@@ -105,7 +113,7 @@ end
 201.times do
   current_game = real_game
   Event.create(
-    game_id: (current_game.id), location: "#{Faker::Address.street_address} #{Faker::Address.zip[0..4]}", max_player: ((4..current_game.max_players).to_a.sample), date: "#{Faker::Date.forward(180)}", user_id:(1..50).to_a.sample)
+    game_id: (current_game.id), location: "#{Faker::Address.street_address} #{Faker::Address.zip[0..4]}", max_player: ((4..current_game.max_players).to_a.sample), date: "#{Faker::Date.forward(180)}", user_id:(1..User.last.id).to_a.sample)
 end
 #static confirms
 puts "Seeding Confirms"

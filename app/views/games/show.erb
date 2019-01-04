@@ -1,5 +1,6 @@
 <div class="" align="center" >
-  <img src="<%= @game.logo %>" alt="<%= @game.name %>" width = "75%" >
+  <img src="<%= @game.logo %>" alt="<%= @game.name %>" width = "55%" >
+  <br><br>
   <p><%= @game.description %></p>
   <p>Max Players Per Session: <%= @game.max_players %></p>
   <p>Platform: <%= @game.platform %></p>
@@ -7,7 +8,7 @@
 </div>
 <h3 align= "center">Events</h3>
 <div class="row">
-    <% @game.events.each do |event| %>
+    <% @game.events.sort_by{|e|e.date}.each do |event| %>
   <div class="col-sm-3">
     <div class="card" style="margin-bottom: 30px;">
       <div class="card-body" style="background-color: #<%= event.full? ? "A9A9A9" : hex_color_sample  %>;" align= "center">

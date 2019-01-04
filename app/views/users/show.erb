@@ -1,7 +1,7 @@
 <h3><%= flash[:notice] %></h3>
 <div class="col-3 float-left" align="center">
   <h1><%="#{@user.username}"%></h1>
-  <img src="<%= @user.profile_img %>" alt="<%= @user.username %>" width = "200px">
+  <img src="<%= @user.profile_img %>" alt="<%= @user.username %>" width = "200px" class= "img-thumbnail"><br><br>
   <% if session[:user_id] == @user.id %>
     <%= button_to "Update information", edit_user_path(@user), method: "get", class: "btn btn-primary border"%>
   <% end %>
@@ -34,6 +34,8 @@
     <% end %>
   </ul>
 </div>
+
+
 <!--
 
 <div class="accordion col-9" id="accordionExample">
