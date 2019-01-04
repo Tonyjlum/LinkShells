@@ -1,6 +1,6 @@
 <div class="card-columns" style="column-gap: 30px;">
   <% @games.each do |game| %>
-    <div class="card" style="margin-bottom: 30px;">
+    <div class="card shadow-lg rounded" style="margin-bottom: 30px;">
       <%= link_to image_tag(game.logo, class: "img-responsive center-block"), game %>
       <div class="card-body">
         <h5><%= game.platform %></h5>

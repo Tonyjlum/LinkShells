@@ -24,5 +24,10 @@ class Event < ApplicationRecord
     self.users.sort_by {|u|u.username}
   end
 
+  def self.open_events
+    Event.all.select {|e| !e.full?}
+  end
+
+
 
 end

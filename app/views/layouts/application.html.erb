@@ -14,7 +14,7 @@
   </head>
 
   <header>
-    <nav class="navbar navbar-fixed-top navbar-expand-lg navbar-light" style="background-color: #<%= hex_color_sample %>">
+    <nav class="navbar navbar-fixed-top navbar-expand-lg navbar-light border-dark" style="background-color: #<%= hex_color_sample %>">
       <a class="navbar-brand" href="/users/<%= session[:user_id] %>"><%= User.find(session[:user_id]).username unless session[:user_id].nil?%></a>
       <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">

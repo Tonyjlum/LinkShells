@@ -6,15 +6,17 @@
   <p>Active Players: <%= @game.users.count %></p>
 </div>
 <h3 align= "center">Events</h3>
-<div class="card-columns" style="column-gap: 30px;">
-  <% @game.events.each do |event| %>
-  <div class="card" style="margin-bottom: 30px;">
-    <div class="card-body" style="background-color: #<%= event.full? ? "A9A9A9" : hex_color_sample  %>;" align= "center">
-      <%= link_to event.date, event %>
-      <%= " [#{event.full_message}]" %><br>
-      <%= "#{event.location}" %><br>
-      <%= "#{event.max_player - event.confirms.count} slots left" %>
+<div class="row">
+    <% @game.events.each do |event| %>
+  <div class="col-sm-3">
+    <div class="card" style="margin-bottom: 30px;">
+      <div class="card-body" style="background-color: #<%= event.full? ? "A9A9A9" : hex_color_sample  %>;" align= "center">
+        <%= link_to event.date, event %>
+        <%= " [#{event.full_message}]" %><br>
+        <%= "#{event.location}" %><br>
+        <%= "#{event.max_player - event.confirms.count} slots left" %>
+      </div>
     </div>
   </div>
   <% end %>
-</div>
+  </div>

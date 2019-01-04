@@ -1,9 +1,6 @@
 Rails.application.routes.draw do
   post "users/logging", to: "users#login", as: "login_in"
-  resources :confirms, except: [:create, :destroy]
   resources :events, except: [:destroy]
-  resources :sessions
-  # resources :ownerships
   resources :games, only: [:index, :show]
   resources :users, except: [:destroy]
 

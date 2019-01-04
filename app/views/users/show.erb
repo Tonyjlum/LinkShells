@@ -1,36 +1,95 @@
 <h3><%= flash[:notice] %></h3>
+<div class="col-3 float-left" align="center">
+  <h1><%="#{@user.username}"%></h1>
+  <img src="<%= @user.profile_img %>" alt="<%= @user.username %>" width = "200px">
+  <% if session[:user_id] == @user.id %>
+    <%= button_to "Update information", edit_user_path(@user), method: "get", class: "btn btn-primary border"%>
+  <% end %>
 
-<span align="right">
-  <h1><%="#{@user.username}"%> </h1>
-<% if session[:user_id] == @user.id %>
-<%= button_to "Update information", edit_user_path(@user), method: "get"%>
-<% end %>
+</div>
 
-<img src="<%= @user.profile_img %>" alt="<%= @user.username %>" width = "200px" align="right">
-
-</span>
-
-<span class="game-list">
+<div class="col-3 float-left" align= "center">
   <h3>Game List</h3>
-  <ul>
+  <ul class="list-group list-group-flush">
     <% @game_list.each do |game| %>
-      <li><%= link_to game.name, game %></li>
-    <% end %>
-  </ul>
-</span>
-
-<div class="event-list">
-  <h3>Hosting:</h3>
-  <ul>
-    <% @hostings.each do |host|%>
-      <li><%= link_to "#{host.game.name}", host %> <br><%=  "#{host.date}" %></li>
+      <li class= "list-group-item"><%= link_to game.name, game %></li>
     <% end %>
   </ul>
 </div>
 
-<h3>Attending:</h3>
-<ul>
-  <% @events.map do |confirms|%>
-    <li><%= link_to "#{confirms.event.game.name}", confirms.event %> <br> <%= "#{confirms.event.date}" %></li>
-  <% end %>
-</ul>
+<div class="col-3 float-left" align= "center">
+  <h3>Hosting</h3>
+  <ul class="list-group list-group-flush">
+    <% @hostings.each do |host|%>
+      <li class= "list-group-item"><%= link_to "#{host.game.name}", host %>   <%=  "#{host.date}" %></li>
+    <% end %>
+  </ul>
+</div>
+
+<div class="col-3 float-left" align= "center">
+  <h3>Attending</h3>
+  <ul class="list-group list-group-flush">
+    <% @events.map do |confirms|%>
+      <li class= "list-group-item"><%= link_to "#{confirms.event.game.name}", confirms.event %>   <%= "#{confirms.event.date}" %></li>
+    <% end %>
+  </ul>
+</div>
+<!--
+
+<div class="accordion col-9" id="accordionExample">
+  <div class="card">
+    <div class="card-header" id="headingOne">
+      <h2 class="mb-0">
+        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          <h3>Game List<h3>
+        </button>
+      </h2>
+    </div>
+
+    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+      <div class="card-body">
+        <ul>
+          <% @game_list.each do |game| %>
+            <li class="list-group"><%= link_to game.name, game %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" id="headingTwo">
+      <h2 class="mb-0">
+        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          <h3>Hosting</h3>
+        </button>
+      </h2>
+    </div>
+    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+      <div class="card-body">
+        <ul>
+          <% @hostings.each do |host|%>
+            <li><%= link_to "#{host.game.name}", host %> <br><%=  "#{host.date}" %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" id="headingThree">
+      <h2 class="mb-0">
+        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+          <h3>Attending</h3>
+        </button>
+      </h2>
+    </div>
+    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+      <div class="card-body">
+        <ul>
+          <% @events.map do |confirms|%>
+            <li><%= link_to "#{confirms.event.game.name}", confirms.event %> <br> <%= "#{confirms.event.date}" %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div> -->

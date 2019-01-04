@@ -1,7 +1,7 @@
 class EventsController < ApplicationController
   def index
-    #limit 10, make a show all button
     @events = Event.all
+    @open_events = Event.open_events
   end
 
   def show
@@ -39,8 +39,9 @@ class EventsController < ApplicationController
     redirect_to @user
   end
 
-  #search for event by game?
 
+
+  private
   def event_params
     params.require(:event).permit(:user_id, :game_id, :location, :max_player, :date)
   end

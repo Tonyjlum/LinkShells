@@ -1,12 +1,15 @@
 <div class="" align="center">
-
-<%= link_to image_tag(@event.game.logo, width: "50%", class: "img-responsive center-block"), @event.game %>
+  <%= link_to image_tag(@event.game.logo, width: "50%", class: "img-responsive center-block"), @event.game %>
 </div>
-<p>Hosted by: <%= link_to @event.user.username, user_path(@event.user) %></p>
-<p>Location: <%= @event.location %></p>
-<p>Event Date: <%= @event.date %></p>
-<p>Max Players for this event: <%= @event.max_player %></p>
-<p>Current Number of Players attending this event: <%= @event.users.count %></p>
+<div class="">
+
+</div>
+  <p>Hosted by: <%= link_to @event.user.username, user_path(@event.user) %></p>
+  <p>Location: <%= @event.location %></p>
+  <p>Event Date: <%= @event.date %></p>
+  <p>Max Players for this event: <%= @event.max_player %></p>
+  <p>Current Number of Players attending this event: <%= @event.users.count %></p>
+</div>
 
 
 <% if session[:user_id].nil?%>
@@ -17,32 +20,32 @@
   <% end  %>
 <% elsif @event.users.include?(User.find(session[:user_id]))%>
   <% session[:event_id] = @event.id  %>
-  <%= button_to "Leave Event", leave_event_path  %>
+  <%= button_to "Leave Event", leave_event_path, class: "btn btn-danger"  %>
 <% elsif @event.full? %>
   This Event is full, Find other events for <%= link_to "#{@event.game.name}", @event.game%>
 <% else %>
   <% session[:event_id] = @event.id %>
-  <%= button_to "Join Event", join_event_path %>
+  <%= button_to "Join Event", join_event_path, class: "btn btn-primary"%>
 <% end %>
 
 <h2 align= "center">Attendees</h2>
-
-<div class="card-columns " style="column-gap: 60px;">
-  <% @confirms.each do |confirm| %>
-  <div class="card" style="margin-bottom: 60px;">
-    <div class="card-body" align= "center">
-      <img src="<%= confirm.profile_img %>" alt="" width = "95%"><br>
-
-      <%= link_to confirm.username, confirm %>
+<div class="row">
+    <% @confirms.each do |confirm| %>
+  <div class="col-sm-3">
+    <div class="card" style="margin-bottom: 30px;">
+      <div class="card-body rounded" align= "center">
+        <%= link_to image_tag(confirm.profile_img, width: "95%", class: "rounded"), confirm %>
+        <%=confirm.username %>
+      </div>
     </div>
   </div>
   <% end %>
-</div>
+  </div>
 
 
 <% unless session[:user_id].nil?%>
-<% if @event.user == User.find(session[:user_id]) %>
-  <% session[:event_id] = @event.id %>
-  <%= button_to "Delete Event", delete_event_path%>
-<% end %>
+  <% if @event.user == User.find(session[:user_id]) %>
+    <% session[:event_id] = @event.id %>
+    <%= button_to "Delete Event", delete_event_path, class: "btn btn-danger"%>
+  <% end %>
 <% end %>
