@@ -112,8 +112,9 @@ end
 
 201.times do
   current_game = real_game
-  Event.create(
+  event = Event.create(
     game_id: (current_game.id), location: "#{Faker::Address.street_address} #{Faker::Address.zip[0..4]}", max_player: ((4..current_game.max_players).to_a.sample), date: "#{Faker::Date.forward(180)}", user_id:(1..User.last.id).to_a.sample)
+    Confirm.create(event_id: event.id, user_id: event.user.id)
 end
 #static confirms
 puts "Seeding Confirms"

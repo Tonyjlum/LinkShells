@@ -1,40 +1,12 @@
 <h3><%= flash[:notice] %></h3>
+
 <div class="col-4 float-left" align="center">
   <h1><%="#{@user.username}"%></h1>
   <img src="<%= @user.profile_img %>" alt="<%= @user.username %>" width = "300px" class= "img-thumbnail"><br><br>
   <% if session[:user_id] == @user.id %>
     <%= button_to "Update information", edit_user_path(@user), method: "get", class: "btn btn-primary border"%>
   <% end %>
-
 </div>
-
-<!-- <div class="col-3 float-left" align= "center">
-  <h3>Game List</h3>
-  <ul class="list-group list-group-flush">
-    <% @game_list.each do |game| %>
-      <li class= "list-group-item"><%= link_to game.name, game %></li>
-    <% end %>
-  </ul>
-</div>
-
-<div class="col-3 float-left" align= "center">
-  <h3>Hosting</h3>
-  <ul class="list-group list-group-flush">
-    <% @hostings.each do |host|%>
-      <li class= "list-group-item"><%= link_to "#{host.game.name}", host %>   <%=  "#{host.date}" %></li>
-    <% end %>
-  </ul>
-</div>
-
-<div class="col-3 float-left" align= "center">
-  <h3>Attending</h3>
-  <ul class="list-group list-group-flush">
-    <% @events.map do |confirms|%>
-      <li class= "list-group-item"><%= link_to "#{confirms.event.game.name}", confirms.event %>   <%= "#{confirms.event.date}" %></li>
-    <% end %>
-  </ul>
-</div> -->
-
 
 <div class="accordion col-8 float-right" id="accordionExample">
   <div class="card">
@@ -45,14 +17,16 @@
         </button>
       </h2>
     </div>
-
     <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
       <div class="card-body">
-        <ul>
+        <ul class="user-dropdown">
           <% @game_list.each do |game| %>
             <li><%= link_to game.name, game %></li>
           <% end %>
         </ul>
+        <% if @game_list.count == 0 %>
+          <p>You do not have any games added to your account.</p>
+        <%end%>
       </div>
     </div>
   </div>
@@ -65,17 +39,20 @@
         </button>
       </h2>
     </div>
-
     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
       <div class="card-body">
-        <ul>
+        <ul class="user-dropdown">
           <% @hostings.each do |host|%>
             <li><%= link_to "#{host.game.name}", host %> <br><%=  "#{host.date}" %></li>
           <% end %>
         </ul>
+          <% if @hostings.count == 0 %>
+            <p>You are not hosing any events.</p>
+          <%end%>
       </div>
     </div>
   </div>
+
   <div class="card">
     <div class="card-header" id="headingThree">
       <h2 class="m-0">
@@ -86,11 +63,14 @@
     </div>
     <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
       <div class="card-body">
-        <ul>
+        <ul class="user-dropdown ">
           <% @events.map do |confirms|%>
             <li><%= link_to "#{confirms.event.game.name}", confirms.event %> <br> <%= "#{confirms.event.date}" %></li>
           <% end %>
         </ul>
+        <% if @events.count == 0 %>
+          <p>You are not currently attending any LinkShell events.</p>
+        <%end%>
       </div>
     </div>
   </div>

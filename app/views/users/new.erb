@@ -10,12 +10,12 @@
   <%= f.label :username %>
   <%= f.text_field :username, class: "form-control"%><br>
   <%= f.label :email %>
-  <%= f.text_field :email, class: "form-control" %><br>
+  <%= f.text_field :email, class: "form-control", placeholder: "Emails are case sensitive and used for logging in"%><br>
   <%= f.label :password %>
   <%= f.password_field :password, class: "form-control" %><br>
   <%= f.label :age %>
   <%= f.number_field :age, class: "form-control" %><br>
   <%= f.label "Profile Picture Link" %>
   <%= f.text_field :profile_img, class: "form-control" %><br>
-  <%= f.submit "Make a new Account", class: "btn btn-primary", form: "new_user" %>
+  <%= f.submit "Make a new Account", class: "btn btn-primary col-2", form: "new_user" %>
 <% end %>

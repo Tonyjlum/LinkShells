@@ -1,4 +1,4 @@
-<h1 align= "center">Start a new event!</h1>
+<h1 align= "center">Host a new event!</h1>
 <ul>
   <% if @errors %>
   <div class="alert alert-warning" role="alert">
@@ -16,7 +16,7 @@
   <%= f.text_field :location, class: "form-control" %><br>
   <%= f.label :max_player %>
   <%= f.number_field :max_player , min: 2, max: 64, class: "form-control"%><br>
-  <%= f.label "Date(YYYY-MM-DD)"%>
-  <%= f.text_field :date, class: "form-control"%><br>
-  <%= f.submit "Host the Event!", class: "btn btn-primary" %>
+  <%= f.label "Date"%>
+  <%= f.text_field :date, class: "form-control", placeholder: "YYYY-MM-DD"%><br>
+  <%= f.submit "Host the Event!", class: "btn btn-primary col-2" %>
 <% end %>
