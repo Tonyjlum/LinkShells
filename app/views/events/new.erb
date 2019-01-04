@@ -8,15 +8,18 @@
   <% end %>
 </div>
 </ul>
+
 <%= form_for @event do |f| %>
-  <%= f.label "Game:" %>
-  <%= f.text_field :user_id, hidden: true, value: session[:user_id]%>
-  <%= f.collection_select :game_id, @games, :id, :game_name_platform %><br><br>
-  <%= f.label :location %>
-  <%= f.text_field :location, class: "form-control" %><br>
-  <%= f.label :max_player %>
-  <%= f.number_field :max_player , min: 2, max: 64, class: "form-control"%><br>
-  <%= f.label "Date"%>
-  <%= f.text_field :date, class: "form-control", placeholder: "YYYY-MM-DD"%><br>
-  <%= f.submit "Host the Event!", class: "btn btn-primary col-2" %>
+  <div class="col-4 mx-auto">
+    <%= f.label "Game:" %>
+    <%= f.text_field :user_id, hidden: true, value: session[:user_id]%>
+    <%= f.collection_select :game_id, @games, :id, :game_name_platform %><br><br>
+    <%= f.label :location %>
+    <%= f.text_field :location, class: "form-control" %><br>
+    <%= f.label :max_player %>
+    <%= f.number_field :max_player , min: 2, max: 64, class: "form-control"%><br>
+    <%= f.label "Date"%>
+    <%= f.date_field :date, class: "form-control"%><br>
+  </div>
+    <%= f.submit "Host the Event!", class: "btn btn-primary btn-block col-2 mx-auto" %>
 <% end %>

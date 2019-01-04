@@ -39,12 +39,12 @@
           <% end %>
       </ul>
       </div>
-    <div align="right" >
+    <div align="right" id="sign-in-form" >
       <% if session[:user_id].nil? && !current_page?("/users/new")%>
         <%= form_tag login_in_path do %>
-        Email <%= text_field_tag :email %>
+        Email  <%= text_field_tag :email %>
         Password <%= password_field_tag :password %>
-        <%= submit_tag "Login", class: "btn btn-secondary"%>
+        <%= submit_tag "Login", class: "btn btn-primary"%>
         <% end %>
       <% end %>
     </div>

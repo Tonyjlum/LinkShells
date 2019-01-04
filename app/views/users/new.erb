@@ -7,6 +7,7 @@
 </div>
 </ul>
 <%= form_for @user do |f| %>
+  <div class="col-4 mx-auto">
   <%= f.label :username %>
   <%= f.text_field :username, class: "form-control"%><br>
   <%= f.label :email %>
@@ -17,5 +18,6 @@
   <%= f.number_field :age, class: "form-control" %><br>
   <%= f.label "Profile Picture Link" %>
   <%= f.text_field :profile_img, class: "form-control" %><br>
-  <%= f.submit "Make a new Account", class: "btn btn-primary col-2", form: "new_user" %>
+  </div>
+  <%= f.submit "Make a new Account", class: "btn btn-primary btn-block col-2 mx-auto", form: "new_user" %>
 <% end %>
